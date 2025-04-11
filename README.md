@@ -2,7 +2,7 @@
 데이터마이닝 프로젝트
 
 
-### /data
+### ./data
 * `Bird_strikes.csv` : row가 적은 데이터.
 * `database.csv` : 보다 많고 자세함. → main
 

@@ -24,3 +24,9 @@ https://www.sciencebase.gov/catalog/item/66d9ed16d34eef5af66d534b
 - 캐나다, 미국 정보 모두 포함, 1966~2023년까지 존재 (여름철에 한번씩만 조사)
 - 우리가 참고할 만한 파일은 MigrantsNonBreeder.zip
 - 각 route의 좌표 정보는 Routes.csv에 명기됨
+
+https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
+- eBird 데이터(코넬대...)
+- R auk 패키지로 읽을 수 있음
+- 2002년쯤부터 현재까지 있다고 한다(확인필요)
+

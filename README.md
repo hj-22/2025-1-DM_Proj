@@ -13,3 +13,8 @@
 - eda 하기
 - 피처 생성 아이디어가 있으면 기록
     - train 시에 새의 종은 사용하기 어려운 점을 고려하기.
+
+### 참고용 링크
+https://nationalzoo.si.edu/migratory-birds/migratory-birds-tracking-table
+- Bird ID, 종, 날짜, 위/경도 정보 포함
+- 종별로 평균낸 다음 해당 날짜에 어떤 새 군집이 얼마나 가까이 있는지에 대한 변수를 만들 수 있을 것 같다.

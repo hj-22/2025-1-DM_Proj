@@ -21,6 +21,6 @@ https://nationalzoo.si.edu/migratory-birds/migratory-birds-tracking-table
 
 https://www.sciencebase.gov/catalog/item/66d9ed16d34eef5af66d534b
 - 미국 지질조사국 데이터(Stop50 형식으로 관측했다는데 뭔지 모르겠음)
-- 캐나다, 미국 정보 모두 포함, 1966~2023년까지 존재
+- 캐나다, 미국 정보 모두 포함, 1966~2023년까지 존재 (여름철에 한번씩만 조사)
 - 우리가 참고할 만한 파일은 MigrantsNonBreeder.zip
 - 각 route의 좌표 정보는 Routes.csv에 명기됨

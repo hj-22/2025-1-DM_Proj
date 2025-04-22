@@ -53,8 +53,8 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
   - 가능하면 버리고 싶다.
 - DAMAGE_LEVEL을 그대로 쓸지?
   - 아니면 Y 만들때 가중치로?
-  - DAM_XXX 계열의 총합이 클수록 DAMAGE_LEVEL도 심각해지는 경향이 있음.
-  - INDICATED_DAMAGE 컬럼
+  - (250422) DAM_XXX 계열의 총합이 클수록 DAMAGE_LEVEL도 심각해지는 경향이 있음.
+  - (250422) INDICATED_DAMAGE 컬럼
       - DAM_XXX 계열이 하나라도 1이면 INDICATED_DAMAGE는 1로 표기되어 있음. 모두 0이면 INDICATED_DAMAGE는 0.
       - INDICATED_DAMAGE가 1인데 DAMAGE_LEVEL이 N=None이 아닌 행이 1개 존재. 제거해도 될 듯. 
 - 반응변수 생성

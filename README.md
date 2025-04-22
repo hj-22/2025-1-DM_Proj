@@ -30,3 +30,27 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 - R auk 패키지로 읽을 수 있음
 - 2002년쯤부터 현재까지 있다고 한다(확인필요)
 
+### 결측치 처리
+- TIME_OF_DAY
+  - TIME, MONTH, DATE, 좌표 기반으로 KNN
+    - TIME이 없는 건?
+      - 삭제하거나,
+      - TIME을 빼고 전체 데이터로 돌려본다.
+- weather (SKY, PRECIPITATION)
+  - 아마 PRECIPITATION이 NaN이면 비가 안왔을 가능성이 높다. (0으로 처리)
+  - sky의 경우는, 날짜와 좌표 기반으로 데이터를 추가적으로 찾아서 넣기.
+    - 정 안되면 0으로
+  - NUM_ENGS, AC_MASS는 비행기 정보로부터 추론
+
+### 그 밖에
+- TIME 버리고 TIME_OF_DAY만 쓰기
+- AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기
+  - 추가 데이터로 서치?
+  - 안쓸수도 있다.
+- AC_CLASS에서 (balloon처럼) 소수 카테고리는 그냥 제거.
+- ENG_POS 계열은 유의미할지 잘 모르겠다.
+  - 가능하면 버리고 싶다.
+- DAMAGE_LEVEL을 그대로 쓸지?
+  - 아니면 Y 만들때 가중치로?
+- 반응변수 생성
+  - AIRPLANE CRASH SEVERITY PREDICTION USING MACHINE LEARNING (Mehta et al., 2021)이랑 똑같이 만든다.

@@ -47,10 +47,20 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 - AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기
   - 추가 데이터로 서치?
   - 안쓸수도 있다.
+      - (250422) AMA, AMO의 코드 테이블을 찾지 못함. 대신 기종별 정보가 있는 테이블을 찾았는데, 여기서 Manufacturer와 모델을 뽑아서 쓰면 될 것 같음. 
 - AC_CLASS에서 (balloon처럼) 소수 카테고리는 그냥 제거.
 - ENG_POS 계열은 유의미할지 잘 모르겠다.
   - 가능하면 버리고 싶다.
 - DAMAGE_LEVEL을 그대로 쓸지?
   - 아니면 Y 만들때 가중치로?
+  - DAM_XXX 계열의 총합이 클수록 DAMAGE_LEVEL도 심각해지는 경향이 있음.
+  - INDICATED_DAMAGE 컬럼
+      - DAM_XXX 계열이 하나라도 1이면 INDICATED_DAMAGE는 1로 표기되어 있음. 모두 0이면 INDICATED_DAMAGE는 0.
+      - INDICATED_DAMAGE가 1인데 DAMAGE_LEVEL이 N=None이 아닌 행이 1개 존재. 제거해도 될 듯. 
 - 반응변수 생성
   - AIRPLANE CRASH SEVERITY PREDICTION USING MACHINE LEARNING (Mehta et al., 2021)이랑 똑같이 만든다.
+      - (250422) 이 논문의 기준을 적용하기에는 fatality에 대한 컬럼이 결측치가 너무 많아서 어려울지도 모름.
+      - NR_INJURIES 컬럼은 NaN이 아닌 값이 112개, NR_FATALITIES는 6개밖에 없음.
+      - damage 기준은 DAMAGE_LEVEL을 사용해도 될 것 같음.
+
+  

@@ -48,7 +48,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
   - 추가 데이터로 서치?
   - 안쓸수도 있다.
       - (250422) AMA, AMO의 코드 테이블을 찾지 못함. 대신 기종별 정보가 있는 테이블을 찾았는데, 여기서 Manufacturer와 모델을 뽑아서 쓰면 될 것 같음.
-          - (250423) 안 쓰는 게 나을듯
+          - (250423) 안 쓰는 게 나을듯. 중요한 건 AC_MASS일 것 같은데, AC_MASS가 NA인 데이터는 AIRCRAFT가 UNKNOWN이거나 제조사 이름만 존재함. 세부 기종을 알 수 없음.
 - AC_CLASS에서 (balloon처럼) 소수 카테고리는 그냥 제거.
 - ENG_POS 계열은 유의미할지 잘 모르겠다.
   - 가능하면 버리고 싶다.

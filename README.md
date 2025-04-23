@@ -40,6 +40,9 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
   - 아마 PRECIPITATION이 NaN이면 비가 안왔을 가능성이 높다. (0으로 처리)
   - sky의 경우는, 날짜와 좌표 기반으로 데이터를 추가적으로 찾아서 넣기.
     - 정 안되면 0으로
+    - https://www.ncei.noaa.gov/access/search/data-search/global-hourly
+    - 미국 해양대기청(NOAA) 소속 환경정보센터.
+        - https://www.ncei.noaa.gov/data/global-hourly/doc/isd-format-document.pdf => document
   - NUM_ENGS, AC_MASS는 비행기 정보로부터 추론
 
 ### 그 밖에

@@ -47,7 +47,8 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 - AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기
   - 추가 데이터로 서치?
   - 안쓸수도 있다.
-      - (250422) AMA, AMO의 코드 테이블을 찾지 못함. 대신 기종별 정보가 있는 테이블을 찾았는데, 여기서 Manufacturer와 모델을 뽑아서 쓰면 될 것 같음. 
+      - (250422) AMA, AMO의 코드 테이블을 찾지 못함. 대신 기종별 정보가 있는 테이블을 찾았는데, 여기서 Manufacturer와 모델을 뽑아서 쓰면 될 것 같음.
+          - (250423) 안 쓰는 게 나을듯
 - AC_CLASS에서 (balloon처럼) 소수 카테고리는 그냥 제거.
 - ENG_POS 계열은 유의미할지 잘 모르겠다.
   - 가능하면 버리고 싶다.

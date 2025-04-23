@@ -41,8 +41,9 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
   - sky의 경우는, 날짜와 좌표 기반으로 데이터를 추가적으로 찾아서 넣기.
     - 정 안되면 0으로
     - https://www.ncei.noaa.gov/access/search/data-search/global-hourly
-    - 미국 해양대기청(NOAA) 소속 환경정보센터.
-        - https://www.ncei.noaa.gov/data/global-hourly/doc/isd-format-document.pdf => document
+    - 미국 해양대기청(NOAA) 소속 환경정보센터
+        - https://www.ncei.noaa.gov/data/global-hourly/doc/isd-format-document.pdf
+        - 이건 컬럼 설명이 들어있는 document
   - NUM_ENGS, AC_MASS는 비행기 정보로부터 추론
 
 ### 그 밖에
@@ -50,9 +51,9 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 - AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기
   - 추가 데이터로 서치?
   - 안쓸수도 있다.
-      - (250422) AMA, AMO의 코드 테이블을 찾지 못함. 대신 기종별 정보가 있는 테이블을 찾았는데, 여기서 Manufacturer와 모델을 뽑아서 쓰면 될 것 같음.
-          - (250423) 안 쓰는 게 나을듯. 중요한 건 AC_MASS일 것 같은데, AC_MASS가 NA인 데이터는 AIRCRAFT가 UNKNOWN이거나 제조사 이름만 존재함. 세부 기종을 알 수 없음.
+      - (250423) 안 쓰는 게 나을듯. 중요한 건 AC_MASS일 것 같은데, AC_MASS가 NA인 데이터는 AIRCRAFT가 UNKNOWN이거나 제조사 이름만 존재함. 세부 기종을 알 수 없음.
 - AC_CLASS에서 (balloon처럼) 소수 카테고리는 그냥 제거.
+- (250423) AC_CLASS, AC_MASS 가 NA인 것들을 제거함. 625개 정도.
 - ENG_POS 계열은 유의미할지 잘 모르겠다.
   - 가능하면 버리고 싶다.
 - DAMAGE_LEVEL을 그대로 쓸지?

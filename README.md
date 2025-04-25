@@ -63,9 +63,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
       - DAM_XXX 계열이 하나라도 1이면 INDICATED_DAMAGE는 1로 표기되어 있음. 모두 0이면 INDICATED_DAMAGE는 0.
       - INDICATED_DAMAGE가 1인데 DAMAGE_LEVEL이 N=None이 아닌 행이 1개 존재. 제거해도 될 듯. 
 - 반응변수 생성
-  - AIRPLANE CRASH SEVERITY PREDICTION USING MACHINE LEARNING (Mehta et al., 2021)이랑 똑같이 만든다.
-      - (250422) 이 논문의 기준을 적용하기에는 fatality에 대한 컬럼이 결측치가 너무 많아서 어려울지도 모름.
-      - NR_INJURIES 컬럼은 NaN이 아닌 값이 112개, NR_FATALITIES는 6개밖에 없음.
-      - damage 기준은 DAMAGE_LEVEL을 사용해도 될 것 같음.
+  - DAMAGE_LEVEL
+      - NaN인 term은 DAMAGE_SUM으로 대체한다.
 
   

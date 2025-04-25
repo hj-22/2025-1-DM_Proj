@@ -48,6 +48,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 
 ### 그 밖에
 - TIME 버리고 TIME_OF_DAY만 쓰기
+    - (250425) 미국 해양대기청에서 발표한 sunset, sunrise time 산출 공식으로 매뉴얼하게 채움
 - AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기
   - 추가 데이터로 서치?
   - 안쓸수도 있다.
@@ -61,7 +62,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
   - (250422) DAM_XXX 계열의 총합이 클수록 DAMAGE_LEVEL도 심각해지는 경향이 있음.
   - (250422) INDICATED_DAMAGE 컬럼
       - DAM_XXX 계열이 하나라도 1이면 INDICATED_DAMAGE는 1로 표기되어 있음. 모두 0이면 INDICATED_DAMAGE는 0.
-      - INDICATED_DAMAGE가 1인데 DAMAGE_LEVEL이 N=None이 아닌 행이 1개 존재. 제거해도 될 듯. 
+      - INDICATED_DAMAGE가 1인데 DAMAGE_LEVEL이 N=None이 아닌 행이 1개 존재. 제거해도 될 듯.
 - 반응변수 생성
   - DAMAGE_LEVEL
       - NaN인 term은 DAMAGE_SUM으로 대체한다.

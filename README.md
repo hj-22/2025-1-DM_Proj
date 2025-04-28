@@ -45,6 +45,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
         - https://www.ncei.noaa.gov/data/global-hourly/doc/isd-format-document.pdf
         - 이건 컬럼 설명이 들어있는 document
   - NUM_ENGS, AC_MASS는 비행기 정보로부터 추론
+  - HEIGHT, SPEED, PHASE OF FLIGHT는 단순 보팅이나 평균으로 채운 모델과 아예 뺀 모델 두 가지 중에 성능이 높은 것을 선택한다.
 
 ### 그 밖에
 - TIME 버리고 TIME_OF_DAY만 쓰기

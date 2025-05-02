@@ -50,6 +50,7 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
       - ENG_1_POS는 
 
 ### 그 밖에
+- (250502) OPERATOR 클러스터링해야 할 것 같다.
 - TIME 버리고 TIME_OF_DAY만 쓰기
     - (250425) 미국 해양대기청에서 발표한 sunset, sunrise time 산출 공식으로 매뉴얼하게 채움
 - AIRCRAFT는 분해해서 AMA랑 AMO로 쓰기

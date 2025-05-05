@@ -1,0 +1,142 @@
+---
+title: "bird"
+author: "242STG20"
+date: "2025-04-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+## filtered 데이터 확인용
+library(tidyverse)
+library(readxl)
+library(auk)
+library(ebirdst)
+
+data = read_csv("./data/data_filled.csv")
+data2 = read_csv("./data/filtered2.csv")
+```
+
+
+```{r}
+# do not run
+# sampling_event <- read_ebd("./data/ebd_sampling_relMar-2025/ebd_sampling_relMar-2025.txt.gz")
+```
+```{r}
+taxonomy <- read_csv("./data/eBird_taxonomy_v2024.csv")
+```
+```{r}
+c('taxanomic_order', 'common_name', 'observation_count', 'country_code', 'state_code', 'latitude', 'longtitude', 'observation_date', 'time_observation_started')
+```
+
+```{r}
+data_path = './data/ebd_US_barswa_202401_202412_smp_relMar-2025/ebd_US_barswa_202401_202412_smp_relMar-2025.txt'
+sampling_path = './data/ebd_US_barswa_202401_202412_smp_relMar-2025/ebd_US_barswa_202401_202412_smp_relMar-2025_sampling.txt'
+output_path = 'auk_output.txt'
+sampling_output_path = 'auk_sampling_output.txt'
+ebd <- auk_ebd(data_path,sampling_path)
+ebd_df <- data_path %>% read_ebd()
+```
+
+```{r}
+ebd_filters <- ebd %>% 
+    auk_date(date = c("2024-02-01", "2024-02-10")) %>%
+    auk_complete()
+```
+
+```{r}
+filtered <- auk_filter(ebd_filters, file = output_path, file_sampling = sampling_output_path)
+```
+
+```{r}
+read_filtered <- read_ebd(filtered)
+read_filtered %>% View()
+ebd_zf <- auk_zerofill('auk_output.txt', 'auk_sampling_output.txt', collapse = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+#########################
+
+data_path = './data/ebd-datafile-SAMPLE/ebd_US-AL-125_202503_202503_smp_relMar-2025.txt'
+sample_df <- data_path %>% read_ebd()
+
+
+
+sample_df %>% View()
+```
+```{r}
+auk_ebd(data_path)
+```
+
+
+
+
+
+
+
+
+
+
+## ebirdst package ##
+
+
+```{r}
+
+
+#################################
+set_ebirdst_access_key("4ts21pa5s600")
+#################################
+```
+
+
+```{r}
+# write.csv(ebirdst_runs, "./data/ebird_data.csv")
+```
+
+```{r}
+data %>% group_by(SPECIES) %>% count() %>% View()
+```
+
+```{r}
+# birds <- data %>% select(SPECIES_ID, SPECIES, NUM_SEEN, NUM_STRUCK)
+birds <- read.csv('./data/birds.csv', na.strings = "")
+```
+
+```{r}
+birds %>% filter(!is.na(is_resident)) %>% group_by(SPECIES) %>% count() %>% arrange(desc(n)) %>% View()
+```
+
+```{r}
+ebirdst_download_status(species = "barn swallow", download_all = TRUE)
+```
+
+
+
+
+```{r}
+
+data %>% group_by(SPECIES) %>% 
+    count() %>% 
+    # filter(!(SPECIES %in% ebird_names$common_name)) %>%
+    arrange(desc(n)) %>% View()
+
+```
+as.numeric(name %in% ebird_names$common_name)
+
+
+

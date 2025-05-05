@@ -83,12 +83,17 @@ set_ebirdst_access_key("4ts21pa5s600")
 #################################
 
 birds <- read_csv('./data/birds.csv', col_names = c('name'))
+
 ebirdst_runs %>% View()
 
 ebird_names <- ebirdst_runs %>% 
     mutate(common_name = tolower(common_name)) %>%
     select(common_name, is_resident, trends_season, trends_region)
 ebird_names %>% View()
+
+ebird_names %>% filter(str_detect(common_name, "yellowlegs")) %>% View()
+ebird_names %>% filter(str_detect(common_name, "ibis")) %>% View()
+
 
 
 birds <- birds %>% mutate(in_ebird = as.numeric(name %in% ebird_names$common_name))
@@ -98,4 +103,8 @@ birds %>% filter(in_ebird == 0) %>% View()
 birds %>% filter(in_ebird == 0) %>% select(name) %>% write_csv("not_in_list.csv")
 
 
+trends_runs <- ebirdst_runs %>%
+    filter(has_trends)
 
+
+ebirdst_runs %>% View()

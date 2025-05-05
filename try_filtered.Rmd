@@ -1,0 +1,266 @@
+---
+title: "try_filtered"
+author: "242STG20"
+date: "2025-04-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+filtered 데이터 확인용
+
+
+```{r}
+## filtered 데이터 확인용
+library(tidyverse)
+library(readxl)
+
+data = read_csv("./data/filtered.csv")
+```
+```{r}
+# aircraft <- read_excel("./data/aircraft_data.xlsx")
+# # https://www.faa.gov/airports/engineering/aircraft_char_database
+```
+```{r}
+
+```
+
+
+##### 비행기 기종
+
+=> 안 쓸거임
+
+```{r}
+file_dir <- "./data/ReleasableAircraft/"
+file_names <- list.files(path = file_dir, pattern = "\\.txt$")
+for(file in file_names){
+    assign(tools::file_path_sans_ext(file), read.csv(paste0(file_dir, file)))
+    print(paste("loaded", file))
+}
+
+```
+
+
+```{r}
+ACFTREF %>% distinct(MFR) %>% View()
+ACFTREF %>% filter(str_starts(MFR, "AIRBUS")) %>% View()
+```
+
+
+
+```{r}
+data %>% group_by(AMA, AMO) %>% distinct(AIRCRAFT) %>% View()
+data %>% group_by(AIRCRAFT) %>% distinct(AMA, AMO) %>% arrange(AIRCRAFT) %>% View()
+data %>% group_by(AIRCRAFT) %>% filter(AIRCRAFT != 'UNKNOWN') %>% count() %>% select(AIRCRAFT) %>% View()
+data %>% group_by(AIRCRAFT) %>% filter(AIRCRAFT != 'UNKNOWN') %>% count() %>% arrange(desc(n)) %>% View()
+
+```
+```{r}
+data %>% group_by(AIRCRAFT) %>% count()  %>% write_csv('aircraft.csv')
+```
+
+
+```{r}
+data %>% filter(AIRCRAFT == 'A-330') %>% distinct(OPERATOR)
+data %>% filter(str_starts(AIRCRAFT, "C-")) %>% View()
+data %>% filter(AIRCRAFT == 'EMB-505 PHENOM 300') %>% View()
+```
+
+A- => Airbus
+B- => Boeing
+
+
+```{r}
+data %>% group_by(AIRCRAFT) %>% count() %>% filter(n<5) %>% nrow() /
+    data %>% group_by(AIRCRAFT) %>% count() %>% nrow()    
+
+```
+
+5대 미만인 기종이 전체의 약 32.6%
+
+```{r}
+air_under5 <- data %>% group_by(AIRCRAFT) %>% count() %>% filter(n<5)
+air_under5 <- air_under5$AIRCRAFT
+```
+```{r}
+data %>% filter(!(AIRCRAFT %in% air_under5)) %>% select(INCIDENT_DATE) %>% ggplot(aes(x = INCIDENT_DATE)) +
+    geom_histogram()
+```
+
+
+```{r}
+
+data %>% group_by(AIRCRAFT, AMA, AMO) %>% count() %>% filter(n == 1) %>% nrow() /
+    data %>% group_by(AIRCRAFT, AMA, AMO) %>% count() %>% nrow()
+
+```
+AMA, AMO 까지 가능한 조합 중 1개만 존재하는 게 약 27%
+이런 건 오기입으로 생각할 수 있지 않을까?
+
+
+
+
+
+
+```{r}
+
+data %>% filter(AIRCRAFT == 'UNKNOWN', !is.na(AC_MASS)) %>% View()
+
+
+data %>% filter(AIRCRAFT != 'UNKNOWN' & is.na(AC_CLASS)) %>% select(AIRCRAFT) %>% View()
+data %>% filter(AIRCRAFT != 'UNKNOWN' & is.na(AC_CLASS)) %>% select(AIRCRAFT) %>% table()
+# B-767-200, AW139
+
+
+```
+
+
+
+##### 기종에서 무게
+
+```{r}
+data %>% filter(AC_MASS == 1 & AC_CLASS == 'A') %>% View()
+```
+
+
+
+
+```{r}
+
+###### 엔진, 비행기 관련 ######
+# EMA, EMO
+
+data %>% filter(AIRCRAFT == 'B-737-300') %>% View()
+
+data %>% filter(AIRCRAFT == 'B-737-300') %>% select(TYPE_ENG) %>% table()
+
+data %>% select(AIRCRAFT) %>% table()
+```
+
+
+
+```{r}
+data %>% filter(is.na('ENG_1_POs'))
+```
+
+
+
+##### 공항 #####
+
+```{r}
+# MASS, CLASS NA 제거
+data <- read_csv("./data/filtered2.csv")
+```
+
+
+```{r}
+missing_weather <- data %>% filter(is.na(SKY) & is.na(PRECIPITATION))
+```
+
+```{r}
+weather_test <- read.csv(file.choose())
+```
+
+```{r}
+isd <- read.csv(file.choose())
+# https://www.ncei.noaa.gov/pub/data/noaa/ 에서 icd-history 파일
+```
+
+```{r}
+isd %>% filter((CTRY == 'US' | CTRY == 'CA') & STATE != "") %>% View()
+
+# 미국, 캐나다의 공항만 필터링
+airports <- isd %>% filter((CTRY == 'US' | CTRY == 'CA') & STATE != "") %>% filter(str_detect(STATION.NAME, "AIRPORT"))
+```
+```{r}
+isd %>% filter(USAF == '724694')
+isd %>% filter(ICAO == 'KFTG')
+data %>% filter(AIRPORT_ID == 'KCFO')
+```
+
+```{r}
+airports
+missing_weather %>% View()
+```
+
+
+
+
+
+
+##### TIME 관련 #####
+
+
+```{r}
+data %>% filter(!is.na(TIME) & is.na(TIME_OF_DAY)) %>% View()    # TIME이 기록되어 있지만 TIME_OF_DAY가 기록되어 있지 않은 경우
+data %>% filter(!is.na(TIME) & !is.na(TIME_OF_DAY)) %>% View()
+## 비슷한 위치, 비슷한 월 기준으로 KNN 사용하여 결측치를 채움.
+
+data %>% filter(is.na(TIME) & is.na(TIME_OF_DAY))
+
+
+
+```
+
+
+
+##### y
+```{r}
+response_var <- c('DAMAGE_LEVEL',
+ 'STR_RAD',
+ 'DAM_RAD',
+ 'STR_WINDSHLD',
+ 'DAM_WINDSHLD',
+ 'STR_NOSE',
+ 'DAM_NOSE',
+ 'STR_ENG1',
+ 'DAM_ENG1',
+ 'ING_ENG1',
+ 'STR_ENG2',
+ 'DAM_ENG2',
+ 'ING_ENG2',
+ 'STR_ENG3',
+ 'DAM_ENG3',
+ 'ING_ENG3',
+ 'STR_ENG4',
+ 'DAM_ENG4',
+ 'ING_ENG4',
+ 'INGESTED_OTHER',
+ 'STR_PROP',
+ 'DAM_PROP',
+ 'STR_WING_ROT',
+ 'DAM_WING_ROT',
+ 'STR_FUSE',
+ 'DAM_FUSE',
+ 'STR_LG',
+ 'DAM_LG',
+ 'STR_TAIL',
+ 'DAM_TAIL',
+ 'STR_LGHTS',
+ 'DAM_LGHTS',
+ 'STR_OTHER',
+ 'DAM_OTHER',
+ 'OTHER_SPECIFY',
+ 'NR_INJURIES',
+ 'NR_FATALITIES',
+ 'INDICATED_DAMAGE')
+```
+
+
+```{r}
+
+damages <- data %>% select(all_of(response_var))
+
+```
+
+```{r}
+damages %>% 
+    mutate(DAMAGE_sum = DAM_RAD + DAM_WINDSHLD + DAM_NOSE + DAM_ENG1 + DAM_ENG2 + DAM_ENG3 + DAM_ENG4 +
+                              DAM_PROP + DAM_WING_ROT + DAM_FUSE + DAM_LG + DAM_TAIL + DAM_LGHTS + DAM_OTHER) %>% 
+    select(DAMAGE_sum, INDICATED_DAMAGE, DAMAGE_LEVEL) %>% View()
+
+```
+
+

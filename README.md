@@ -34,6 +34,10 @@ https://transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvz
 - On-Time : Reporting Carrier On-Time Performance (1987-present)
 - Flight Delay에 대한 데이터. 미국 주 단위별로 항공편 운항 스케줄 정보가 있음.
 
+https://data.cnra.ca.gov/dataset/usfws-administrative-waterfowl-flyway-boundaries](https://sos.noaa.gov/catalog/datasets/bird-migration-patterns-western-hemisphere/
+- 미국 해양대기청
+- 118개 종에 대한 일별 중심위치
+
 ### 결측치 처리
 - TIME_OF_DAY
   - TIME, MONTH, DATE, 좌표 기반으로 KNN

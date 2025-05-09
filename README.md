@@ -30,6 +30,10 @@ https://science.ebird.org/en/use-ebird-data/download-ebird-data-products
 - R auk 패키지로 읽을 수 있음
 - 2002년쯤부터 현재까지 있다고 한다(확인필요)
 
+https://transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
+- On-Time : Reporting Carrier On-Time Performance (1987-present)
+- Flight Delay에 대한 데이터. 미국 주 단위별로 항공편 운항 스케줄 정보가 있음.
+
 ### 결측치 처리
 - TIME_OF_DAY
   - TIME, MONTH, DATE, 좌표 기반으로 KNN

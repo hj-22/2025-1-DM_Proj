@@ -38,6 +38,12 @@ https://data.cnra.ca.gov/dataset/usfws-administrative-waterfowl-flyway-boundarie
 - 미국 해양대기청
 - 118개 종에 대한 일별 중심위치
 
+### 논문
+**A Predictive Ensemble Model to Minimize Bird Strike Occurrences on Aircrafts at U.S. Airports**
+- https://scholarspace.library.gwu.edu/concern/gw_etds/wd375x08n
+- 덴버 국제공항 항공편 데이터로 prediction
+- 다른 공항에 대해서도 이런 데이터가 있는지 찾아보면 좋겠다.
+
 ### 결측치 처리
 - TIME_OF_DAY
   - TIME, MONTH, DATE, 좌표 기반으로 KNN

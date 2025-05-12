@@ -6,13 +6,13 @@
 * `Bird_strikes.csv` : row가 적은 데이터.
 * `database.csv` : 보다 많고 자세함. → main
 
-### 다음에 할 일 → 4/25까지
-
-- y 만들기
-    - imbalance가 있다면 smote로 해보기
-- eda 하기
-- 피처 생성 아이디어가 있으면 기록
-    - train 시에 새의 종은 사용하기 어려운 점을 고려하기.
+### 다음에 할 일 
+- birdstrike_data(FAA Wiildlife strike)와 non_birdstrke_data(Transtats BTS)에서 겹치는 항공편이 있는지 확인하고, 겹치는 항공편은 non_birdstrike_data에서 삭제
+    - Registration number, incident date(혹시 모르니 쁠마 1), AIRPORT_ID 기준으로 중복 확인
+- non_birdstrike data에서 AC_MASS 채우기
+    - birdstrike_data 전체버전(17만개) REG 컬럼 기준으로 11333개 채울 수 있다.
+- non_birdstrike_data에서 airline code(OP_UNIQUE_CARRIER, 두글자짜리)를 ICAO 기준의 세자리 코드로 매핑해야함
+    - BTS 데이터베이스에 있는 reporting_airline 룩업테이블이랑 IATA_CODE_Reporting_Airline 룩업테이블, https://en.wikipedia.org/wiki/List_of_airline_codes 의 테이블 이용하면 될듯
 
 ### 참고용 링크
 https://nationalzoo.si.edu/migratory-birds/migratory-birds-tracking-table

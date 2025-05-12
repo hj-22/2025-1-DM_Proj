@@ -9,6 +9,7 @@
 ### 다음에 할 일 
 - birdstrike_data(FAA Wiildlife strike)와 non_birdstrke_data(Transtats BTS)에서 겹치는 항공편이 있는지 확인하고, 겹치는 항공편은 non_birdstrike_data에서 삭제
     - Registration number, incident date(혹시 모르니 쁠마 1), AIRPORT_ID 기준으로 중복 확인
+    - 중복이 너무 많으면 non_birdstrike 채우는 과정에서 거르기
 - non_birdstrike data에서 AC_MASS 채우기
     - birdstrike_data 전체버전(17만개) REG 컬럼 기준으로 11333개 채울 수 있다.
 - non_birdstrike_data에서 airline code(OP_UNIQUE_CARRIER, 두글자짜리)를 ICAO 기준의 세자리 코드로 매핑해야함

@@ -3,7 +3,7 @@
 
 
 ### 다음에 할 일 
-- (250514) strike/non-strike 데이터 2005년 이전 제거. (2005년 ~ 2024년 20년치 데이터만 사용)
+- **(250514) strike/non-strike 데이터 2005년 이전 제거하고 (2005년 ~ 2024년 20년치 데이터만 사용) / non-strike 다시 샘플링(조금 늘려서)**
 - birdstrike_data(FAA Wiildlife strike)와 non_birdstrke_data(Transtats BTS)에서 겹치는 항공편이 있는지 확인하고, 겹치는 항공편은 non_birdstrike_data에서 삭제
     - Registration number, incident date(혹시 모르니 쁠마 1), AIRPORT_ID 기준으로 중복 확인
     - 중복이 너무 많으면 non_birdstrike 채우는 과정에서 거르기

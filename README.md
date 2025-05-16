@@ -4,13 +4,15 @@
 
 ### 다음에 할 일 
 - **(250514) strike/non-strike 데이터 2005년 이전 제거하고 (2005년 ~ 2024년 20년치 데이터만 사용) / non-strike 다시 샘플링(조금 늘려서)**
-- birdstrike_data(FAA Wiildlife strike)와 non_birdstrke_data(Transtats BTS)에서 겹치는 항공편이 있는지 확인하고, 겹치는 항공편은 non_birdstrike_data에서 삭제
-    - Registration number, incident date(혹시 모르니 쁠마 1), AIRPORT_ID 기준으로 중복 확인
-    - 중복이 너무 많으면 non_birdstrike 채우는 과정에서 거르기
-- non_birdstrike data에서 AC_MASS 채우기
-    - birdstrike_data 전체버전(17만개) REG 컬럼 기준으로 11333개 채울 수 있다.
-- non_birdstrike_data에서 airline code(OP_UNIQUE_CARRIER, 두글자짜리)를 ICAO 기준의 세자리 코드로 매핑해야함
-    - BTS 데이터베이스에 있는 reporting_airline 룩업테이블이랑 IATA_CODE_Reporting_Airline 룩업테이블, https://en.wikipedia.org/wiki/List_of_airline_codes 의 테이블 이용하면 될듯
+- 날씨 데이터 가져오기
+    - 주로 옛날(2000년대)데이터일수록 기상정보가 누락되는 경향성이 있다.
+        - 일단은 위치, 앞뒤 며칠 기준으로 mean imputation 시도해보고
+        - 너무 심하면 10년치 데이터만 사용한다든가 하는 식으로...
+- Bird data 아이디어
+    - 위, 경도 기준 8km 이내, 하루 전까지 가장 많이(top3) 관측된 새의 종과 개체수 불러와서
+        - 평균 무게나, (training data 기준) 사고 데이터에 등장하는 빈도수로 위험성 점수 계산?
+    - 철새
+        - 이전 3년 동안 그 시즌에 8km 반경 내에서 꾸준히 관측된 새가 있는지? 있다면 종, 개체수(관측건수 총합)
 
 ### 참고용 링크
 https://nationalzoo.si.edu/migratory-birds/migratory-birds-tracking-table
@@ -62,6 +64,12 @@ https://data.cnra.ca.gov/dataset/usfws-administrative-waterfowl-flyway-boundarie
       - ENG_1_POS는 
 
 ### 그 밖에
+- (250516) negative class를 104483개로 다시 샘플링.
+    - undersampling 한 것이기 때문에 probability calibration 필요; **Calibrating Probability with Undersampling for Unbalanced Classification** 참조 
+- (250516) 태스크를 bird strike occurence classfication으로 바꿨기 때문에 airline, AC_MASS 등은 채우지 않는다.
+    - 만약 채우고 싶다면...
+    - airline code(OP_UNIQUE_CARRIER, 두글자짜리)를 ICAO 기준의 세자리 코드로 매핑. BTS 데이터베이스에 있는 reporting_airline 룩업테이블이랑 IATA_CODE_Reporting_Airline 룩업테이블, https://en.wikipedia.org/wiki/List_of_airline_codes 의 테이블 이용하면 될듯
+    - AC_MASS는 전체 birdstrike data(17만개) 기준 N-number로 서치 돌렸을때 97000개 정도 채워짐
 - (250502) OPERATOR 클러스터링 / AC_CLASS는 비행기 제조사로 대체
 - (250202) HEIGHT, SPEED 결측치는 PHASE_OF_FLIGHT 기준 mean으로 대체
 - TIME 버리고 TIME_OF_DAY만 쓰기

@@ -13,6 +13,7 @@
         - 평균 무게나, (training data 기준) 사고 데이터에 등장하는 빈도수로 위험성 점수 계산?
     - 철새
         - 이전 3년 동안 그 시즌에 8km 반경 내에서 꾸준히 관측된 새가 있는지? 있다면 종, 개체수(관측건수 총합)
+        - 또는 철새가 "그 시즌 그 근방에 왔는지" indicator
 
 ### 참고용 링크
 https://nationalzoo.si.edu/migratory-birds/migratory-birds-tracking-table
